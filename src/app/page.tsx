@@ -167,9 +167,9 @@ export default function StorefrontHome() {
            1. HERO SECTION (Split Left Content / Right Visual Grid)
            ========================================================================= */}
         <section style={{ 
-          background: 'radial-gradient(circle at top right, rgba(251, 192, 45, 0.08) 0%, rgba(233, 39, 26, 0.03) 50%, #ffffff 100%)', 
+          background: 'linear-gradient(180deg, #FFFDF7 0%, #FFFFFF 100%)', 
           borderBottom: '1.5px solid var(--border)', 
-          padding: '72px 24px 80px',
+          padding: '48px 16px 64px',
           position: 'relative',
           overflow: 'hidden'
         }}>
@@ -184,10 +184,10 @@ export default function StorefrontHome() {
           }} />
 
           <div className="container" style={{ maxWidth: '1200px', position: 'relative', zIndex: 1, margin: '0 auto' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '48px', alignItems: 'center' }}>
+            <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '40px', alignItems: 'center' }}>
               
               {/* Hero Left Content */}
-              <div className="mobile-stack-center">
+              <div className="mobile-stack-center" style={{ maxWidth: '100%' }}>
                 <div style={{ 
                   display: 'inline-flex', 
                   alignItems: 'center', 
@@ -197,23 +197,23 @@ export default function StorefrontHome() {
                   backgroundColor: '#FEF3C7', 
                   border: '1.5px solid var(--accent-gold)', 
                   color: '#B45309', 
-                  fontSize: '12px', 
+                  fontSize: '11.5px', 
                   fontWeight: 700, 
                   textTransform: 'uppercase', 
-                  letterSpacing: '1px', 
-                  marginBottom: '24px',
+                  letterSpacing: '0.8px', 
+                  marginBottom: '20px',
                   boxShadow: '0 2px 10px rgba(251, 192, 45, 0.15)'
                 }}>
                   ✨ Beverly Group Official Marketplace
                 </div>
 
                 <h1 className="mobile-center" style={{ 
-                  fontSize: '44px', 
+                  fontSize: '38px', 
                   fontWeight: 800, 
-                  letterSpacing: '-1.2px', 
-                  lineHeight: 1.12,
+                  letterSpacing: '-1px', 
+                  lineHeight: 1.15,
                   color: 'var(--ink)',
-                  marginBottom: '20px'
+                  marginBottom: '18px'
                 }}>
                   Everything Beverly Group sells,<br />
                   <span style={{ 
@@ -226,17 +226,17 @@ export default function StorefrontHome() {
                 </h1>
                 
                 <p className="mobile-center" style={{ 
-                  fontSize: '16.5px', 
+                  fontSize: '15.5px', 
                   color: 'var(--text-secondary)', 
                   lineHeight: 1.6, 
-                  marginBottom: '32px',
-                  maxWidth: '520px'
+                  marginBottom: '28px',
+                  maxWidth: '480px'
                 }}>
                   Order fresh meals, hot pizzas, daily baked treats, fashion, home goods, and toys from all Beverly Group stores in one easy checkout.
                 </p>
 
                 {/* Hero Primary Actions */}
-                <div className="mobile-flex-center" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '32px' }}>
+                <div className="mobile-flex-center" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '28px' }}>
                   <Link 
                     href="/store"
                     className="btn btn-primary mobile-btn-full" 
@@ -279,27 +279,31 @@ export default function StorefrontHome() {
                 </div>
 
                 {/* Quick Category Chips */}
-                <div className="mobile-flex-center" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center', fontSize: '12.5px' }}>
-                  <span style={{ fontWeight: 700, color: 'var(--text-muted)' }}>Popular Categories:</span>
-                  <button type="button" onClick={() => router.push('/store?q=pizza')} style={{ background: '#FEF3C7', border: '1px solid var(--accent-gold)', borderRadius: 'var(--radius-full)', padding: '4px 14px', color: '#B45309', cursor: 'pointer', fontWeight: 650 }}>🍕 Pizza &amp; Fast Meals</button>
-                  <button type="button" onClick={() => router.push('/store?q=bakery')} style={{ background: '#FFFBEB', border: '1px solid var(--accent-gold)', borderRadius: 'var(--radius-full)', padding: '4px 14px', color: '#B45309', cursor: 'pointer', fontWeight: 650 }}>🥐 Bakeries &amp; Cakes</button>
-                  <button type="button" onClick={() => router.push('/store?q=toys')} style={{ background: '#FDE8E8', border: '1px solid var(--accent-gold)', borderRadius: 'var(--radius-full)', padding: '4px 14px', color: '#991B1B', cursor: 'pointer', fontWeight: 650 }}>🧸 Toys &amp; Candies</button>
-                  <button type="button" onClick={() => router.push('/store?q=fashion')} style={{ background: '#F3E8FF', border: '1px solid var(--accent-gold)', borderRadius: 'var(--radius-full)', padding: '4px 14px', color: '#6B21A8', cursor: 'pointer', fontWeight: 650 }}>👗 Fashion Boutique</button>
+                <div style={{ width: '100%', marginTop: '12px' }}>
+                  <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '10px', textAlign: 'center' }}>
+                    Popular Categories
+                  </div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', justifyContent: 'center', alignItems: 'center' }}>
+                    <button type="button" onClick={() => router.push('/store?q=pizza')} style={{ background: '#FEF3C7', border: '1px solid var(--accent-gold)', borderRadius: 'var(--radius-full)', padding: '6px 14px', color: '#B45309', cursor: 'pointer', fontWeight: 650, fontSize: '12px' }}>🍕 Pizza &amp; Fast Meals</button>
+                    <button type="button" onClick={() => router.push('/store?q=bakery')} style={{ background: '#FFFBEB', border: '1px solid var(--accent-gold)', borderRadius: 'var(--radius-full)', padding: '6px 14px', color: '#B45309', cursor: 'pointer', fontWeight: 650, fontSize: '12px' }}>🥐 Bakeries &amp; Cakes</button>
+                    <button type="button" onClick={() => router.push('/store?q=toys')} style={{ background: '#FDE8E8', border: '1px solid var(--accent-gold)', borderRadius: 'var(--radius-full)', padding: '6px 14px', color: '#991B1B', cursor: 'pointer', fontWeight: 650, fontSize: '12px' }}>🧸 Toys &amp; Candies</button>
+                    <button type="button" onClick={() => router.push('/store?q=fashion')} style={{ background: '#F3E8FF', border: '1px solid var(--accent-gold)', borderRadius: 'var(--radius-full)', padding: '6px 14px', color: '#6B21A8', cursor: 'pointer', fontWeight: 650, fontSize: '12px' }}>👗 Fashion Boutique</button>
+                  </div>
                 </div>
               </div>
 
               {/* Hero Right Visual Showcase (Sleek Modern Glassmorphic Platform Card) */}
-              <div style={{ position: 'relative' }}>
+              <div style={{ position: 'relative', width: '100%', maxWidth: '100%' }}>
                 
                 {/* Background Ambient Glow */}
                 <div style={{
                   position: 'absolute',
-                  top: '-20px',
-                  right: '-20px',
-                  width: '240px',
-                  height: '240px',
+                  top: '-10px',
+                  right: '-10px',
+                  width: '200px',
+                  height: '200px',
                   borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(233, 39, 26, 0.15) 0%, rgba(251, 192, 45, 0.15) 50%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(233, 39, 26, 0.12) 0%, rgba(251, 192, 45, 0.12) 50%, transparent 70%)',
                   filter: 'blur(30px)',
                   pointerEvents: 'none'
                 }} />
@@ -307,27 +311,29 @@ export default function StorefrontHome() {
                 {/* Main Hero Card Container */}
                 <div style={{
                   backgroundColor: '#ffffff',
-                  borderRadius: '24px',
-                  padding: '24px',
+                  borderRadius: '20px',
+                  padding: '20px',
                   border: '1.5px solid var(--border)',
-                  boxShadow: '0 20px 40px -10px rgba(0,0,0,0.08)',
+                  boxShadow: '0 16px 36px -10px rgba(0,0,0,0.08)',
                   position: 'relative',
-                  zIndex: 2
+                  zIndex: 2,
+                  width: '100%',
+                  boxSizing: 'border-box'
                 }}>
                   
                   {/* Card Header Pill */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10B981', display: 'inline-block' }} />
-                      <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Verified Beverly Merchants</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10B981', display: 'inline-block' }} />
+                      <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Verified Beverly Merchants</span>
                     </div>
-                    <span style={{ fontSize: '11px', fontWeight: 700, backgroundColor: '#FEF3C7', color: '#B45309', padding: '2px 8px', borderRadius: 'var(--radius-full)' }}>
+                    <span style={{ fontSize: '10px', fontWeight: 700, backgroundColor: '#FEF3C7', color: '#B45309', border: '1px solid var(--accent-gold)', padding: '2px 8px', borderRadius: 'var(--radius-full)' }}>
                       7 Stores Live
                     </span>
                   </div>
 
                   {/* Curated Store Photography Grid Preview */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
                     
                     <div 
                       onClick={() => {
@@ -340,7 +346,7 @@ export default function StorefrontHome() {
                         border: '1px solid #FCA5A5', 
                         cursor: 'pointer',
                         position: 'relative',
-                        height: '110px',
+                        height: '100px',
                         backgroundColor: '#FEF2F2'
                       }}
                     >
@@ -349,9 +355,9 @@ export default function StorefrontHome() {
                         alt="Yurmealicious Pizza" 
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                       />
-                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)', padding: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
-                        <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#ffffff', margin: 0, lineHeight: 1.2 }}>Yurmealicious Pizza</h4>
-                        <span style={{ fontSize: '10px', color: '#FCD34D', fontWeight: 700 }}>Wood-Fired Pizza</span>
+                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)', padding: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+                        <h4 style={{ fontSize: '12px', fontWeight: 800, color: '#ffffff', margin: 0, lineHeight: 1.2 }}>Yurmealicious Pizza</h4>
+                        <span style={{ fontSize: '9.5px', color: '#FCD34D', fontWeight: 700 }}>Wood-Fired Pizza</span>
                       </div>
                     </div>
 
@@ -366,7 +372,7 @@ export default function StorefrontHome() {
                         border: '1px solid #FDE68A', 
                         cursor: 'pointer',
                         position: 'relative',
-                        height: '110px',
+                        height: '100px',
                         backgroundColor: '#FFFBEB'
                       }}
                     >
@@ -375,9 +381,9 @@ export default function StorefrontHome() {
                         alt="Beverly Bakeries" 
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                       />
-                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)', padding: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
-                        <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#ffffff', margin: 0, lineHeight: 1.2 }}>Beverly Bakeries</h4>
-                        <span style={{ fontSize: '10px', color: '#FCD34D', fontWeight: 700 }}>Fresh Pastries Daily</span>
+                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)', padding: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+                        <h4 style={{ fontSize: '12px', fontWeight: 800, color: '#ffffff', margin: 0, lineHeight: 1.2 }}>Beverly Bakeries</h4>
+                        <span style={{ fontSize: '9.5px', color: '#FCD34D', fontWeight: 700 }}>Fresh Pastries Daily</span>
                       </div>
                     </div>
 
@@ -392,7 +398,7 @@ export default function StorefrontHome() {
                         border: '1px solid #DDD6FE', 
                         cursor: 'pointer',
                         position: 'relative',
-                        height: '110px',
+                        height: '100px',
                         backgroundColor: '#F3E8FF'
                       }}
                     >
@@ -401,9 +407,9 @@ export default function StorefrontHome() {
                         alt="Celebrity Styles" 
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                       />
-                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)', padding: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
-                        <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#ffffff', margin: 0, lineHeight: 1.2 }}>Celebrity Styles</h4>
-                        <span style={{ fontSize: '10px', color: '#FCD34D', fontWeight: 700 }}>Fashion &amp; Boutique</span>
+                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)', padding: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+                        <h4 style={{ fontSize: '12px', fontWeight: 800, color: '#ffffff', margin: 0, lineHeight: 1.2 }}>Celebrity Styles</h4>
+                        <span style={{ fontSize: '9.5px', color: '#FCD34D', fontWeight: 700 }}>Fashion &amp; Boutique</span>
                       </div>
                     </div>
 
@@ -418,7 +424,7 @@ export default function StorefrontHome() {
                         border: '1px solid #FCA5A5', 
                         cursor: 'pointer',
                         position: 'relative',
-                        height: '110px',
+                        height: '100px',
                         backgroundColor: '#FDE8E8'
                       }}
                     >
@@ -427,20 +433,20 @@ export default function StorefrontHome() {
                         alt="Toys in CandiLand" 
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                       />
-                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)', padding: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
-                        <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#ffffff', margin: 0, lineHeight: 1.2 }}>Toys in CandiLand</h4>
-                        <span style={{ fontSize: '10px', color: '#FCD34D', fontWeight: 700 }}>Sweets &amp; Toys</span>
+                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)', padding: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+                        <h4 style={{ fontSize: '12px', fontWeight: 800, color: '#ffffff', margin: 0, lineHeight: 1.2 }}>Toys in CandiLand</h4>
+                        <span style={{ fontSize: '9.5px', color: '#FCD34D', fontWeight: 700 }}>Sweets &amp; Toys</span>
                       </div>
                     </div>
 
                   </div>
 
                   {/* Card Bottom Banner */}
-                  <div style={{ marginTop: '16px', borderTop: '1px solid var(--border)', paddingTop: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: '12px', color: 'var(--text-secondary)', fontWeight: 600 }}>
+                  <div style={{ marginTop: '14px', borderTop: '1px solid var(--border)', paddingTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '6px' }}>
+                    <span style={{ fontSize: '11.5px', color: 'var(--text-secondary)', fontWeight: 600 }}>
                       ⚡ Single Unified Checkout
                     </span>
-                    <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--primary-red)' }}>
+                    <span style={{ fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-red)' }}>
                       Paystack Secured 🔒
                     </span>
                   </div>

@@ -104,8 +104,8 @@ export default function CustomerHeader() {
               <Image 
                 src="/logo.png" 
                 alt="BGOC Logo" 
-                width={36} 
-                height={36} 
+                width={42} 
+                height={42} 
                 style={{ objectFit: 'contain' }}
                 priority
               />
