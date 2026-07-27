@@ -113,7 +113,8 @@ export default function RegisterEntry() {
       if (error) {
         setErrorMsg(error.message)
       } else if (data.user && !data.session) {
-        setSuccessMsg('✓ Account registered! A confirmation link has been sent to your email. Please check your inbox and click the verification link to log in.')
+        setSuccessMsg('📧 Account registered! A verification email has been sent to ' + email + '. Please check your inbox and click the verification link before logging in to claim or set up your store.')
+        setIsSignUp(false)
       } else {
         setSuccessMsg('Account created successfully! Redirecting...')
         setTimeout(() => {
