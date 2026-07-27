@@ -179,6 +179,9 @@ export default function AdminDashboard() {
       }
 
       if (signUpData.user && !signUpData.session) {
+        if (signUpData.user.identities && signUpData.user.identities.length === 0) {
+          throw new Error('Invalid login credentials for administrator account. Please check your password or run the 1-step SQL snippet in Supabase SQL Editor to update your password.')
+        }
         setAdminResetMsg('✓ Admin account created! To complete login without waiting for email delivery, run the 1-line SQL confirmation in your Supabase SQL Editor, then enter your password below to log in.')
         return
       }
