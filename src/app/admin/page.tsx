@@ -171,81 +171,44 @@ export default function AdminDashboard() {
       }
 
       if (targetUser) {
-        // Ensure profile has group_admin role
+        // Ensure profile has group_admin role in DB
         await supabase
           .from('profiles')
-          .update({ role: 'group_admin', full_name: 'Beverly Group Admin' })
-          .eq('id', targetUser.id)
+          .upsert({ id: targetUser.id, full_name: 'Beverly Group Admin', role: 'group_admin' })
 
         await checkUserAndRole()
       }
     } catch (err: any) {
       const msg = typeof err === 'string' ? err : err?.message
-      setAdminAuthError(!msg || msg === '0' ? 'Invalid login credentials. Please check your password.' : msg)
+      setAdminAuthError(!msg || msg === '0' ? 'Invalid admin login credentials. Please check your password.' : msg)
     } finally {
       setAdminAuthLoading(false)
     }
   }
 
-  const handleDemoAdminLogin = async () => {
-    setAdminAuthLoading(true)
-    setAdminAuthError('')
-
-    try {
-      const demoEmail = 'admin@beverly.com'
-      const demoPass = 'AdminPass123!'
-
-      let targetUser: any = null
-
-      const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
-        email: demoEmail,
-        password: demoPass,
-      })
-
-      if (signInError || !signInData.user) {
-        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
-          email: demoEmail,
-          password: demoPass,
-          options: {
-            data: { full_name: 'Beverly Group Admin', role: 'group_admin' }
-          }
-        })
-        if (signUpError) throw signUpError
-        targetUser = signUpData.user
-      } else {
-        targetUser = signInData.user
-      }
-
-      if (targetUser) {
-        await supabase
-          .from('profiles')
-          .update({ role: 'group_admin' })
-          .eq('id', targetUser.id)
-
-        checkUserAndRole()
-      }
-    } catch (err: any) {
-      setAdminAuthError(err.message || 'Demo admin sign in failed.')
-    } finally {
-      setAdminAuthLoading(false)
+  const handleResetAllStoreClaims = async () => {
+    if (!confirm('Are you sure you want to reset ALL 7 store claims to unclaimed? This will clear all existing store claims so vendors can register afresh.')) {
+      return
     }
-  }
 
-  // Dev Utility
-  const makeAdmin = async () => {
-    if (!user) return
     setLoading(true)
     try {
       const { error } = await supabase
-        .from('profiles')
-        .update({ role: 'group_admin' })
-        .eq('id', user.id)
+        .from('stores')
+        .update({
+          owner_user_id: null,
+          approval_status: 'unclaimed',
+          rejection_reason: null
+        })
+        .neq('id', '00000000-0000-0000-0000-000000000000')
 
       if (error) throw error
-      setRole('group_admin')
+
+      alert('✓ All store claims have been successfully reset to unclaimed!')
       fetchStores()
-    } catch (err) {
-      alert('Failed to promote user to admin. Verify RLS is enabled.')
+    } catch (err: any) {
+      alert('Error resetting stores: ' + (err.message || 'Unknown error'))
+    } finally {
       setLoading(false)
     }
   }
@@ -590,20 +553,10 @@ export default function AdminDashboard() {
                   <button
                     type="submit"
                     className="btn btn-primary"
-                    style={{ width: '100%', padding: '12px', fontSize: '14px', borderRadius: 'var(--radius-sm)', marginBottom: '12px' }}
+                    style={{ width: '100%', padding: '12px', fontSize: '14px', borderRadius: 'var(--radius-sm)' }}
                     disabled={adminAuthLoading}
                   >
                     {adminAuthLoading ? 'Authenticating...' : 'Log In as Administrator'}
-                  </button>
-
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    style={{ width: '100%', padding: '10px', fontSize: '12px', color: 'var(--text-secondary)' }}
-                    onClick={handleDemoAdminLogin}
-                    disabled={adminAuthLoading}
-                  >
-                    ⚡ Quick Demo Admin Sign-In (Dev Bypass)
                   </button>
                 </form>
               )}
@@ -625,14 +578,7 @@ export default function AdminDashboard() {
             Only users with the role <strong>group_admin</strong> can access the approval dashboard. Your current profile role is <strong>{role || 'unknown'}</strong>.
           </p>
 
-          <div className="alert alert-warning" style={{ textAlign: 'left', marginBottom: '24px' }}>
-            <p><strong>Development Tip:</strong> To easily test this page, click the button below to upgrade your logged-in profile to a group_admin in the database.</p>
-          </div>
-
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-            <button className="btn btn-primary" onClick={makeAdmin}>
-              Promote Me to Admin
-            </button>
             <button className="btn btn-secondary" onClick={handleLogout}>
               Log Out / Switch Account
             </button>
@@ -773,7 +719,17 @@ export default function AdminDashboard() {
           <div className="header-title">{getPageTitle()}</div>
         </div>
 
-        <div className="header-right">
+        <div className="header-right" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <button 
+            type="button"
+            className="btn btn-secondary"
+            style={{ fontSize: '12px', padding: '6px 12px', borderRadius: 'var(--radius-full)', border: '1px solid var(--accent-gold)', color: '#B45309', backgroundColor: '#FEF3C7', fontWeight: 700 }}
+            onClick={handleResetAllStoreClaims}
+            title="Reset all store claims to unclaimed state"
+          >
+            🔄 Reset All Store Claims
+          </button>
+
           <button className="header-notification">
             <Bell size={18} />
             {pendingStoresCount > 0 && (
