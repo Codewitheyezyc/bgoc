@@ -134,6 +134,9 @@ export default function AdminDashboard() {
   }, [supabase, fetchStores])
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.search.includes('confirmed=true')) {
+      setAdminResetMsg('✓ Email verified successfully! Please log in with your admin credentials.')
+    }
     checkUserAndRole()
   }, [checkUserAndRole])
 
@@ -141,46 +144,55 @@ export default function AdminDashboard() {
     e.preventDefault()
     setAdminAuthLoading(true)
     setAdminAuthError('')
+    setAdminResetMsg('')
 
     try {
-      let targetUser: any = null
-
+      // 1. Attempt standard Sign In
       const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
-        email: adminEmail,
+        email: adminEmail.trim(),
         password: adminPassword,
       })
 
-      if (signInError || !signInData.user) {
-        // Fallback to signUp if user is not registered in GoTrue yet
-        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
-          email: adminEmail,
-          password: adminPassword,
-          options: {
-            data: { full_name: 'Beverly Group Admin', role: 'group_admin' }
-          }
-        })
-
-        if (signUpError) {
-          const rawErrMsg = signInError?.message || signUpError.message
-          throw new Error(rawErrMsg && rawErrMsg !== '0' ? rawErrMsg : 'Invalid login credentials. Please check your email and password.')
-        }
-
-        targetUser = signUpData.user
-      } else {
-        targetUser = signInData.user
-      }
-
-      if (targetUser) {
+      if (signInData?.user && signInData?.session) {
         // Ensure profile has group_admin role in DB
         await supabase
           .from('profiles')
-          .upsert({ id: targetUser.id, full_name: 'Beverly Group Admin', role: 'group_admin' })
+          .upsert({ id: signInData.user.id, full_name: 'Beverly Group Admin', role: 'group_admin' })
+
+        await checkUserAndRole()
+        return
+      }
+
+      // 2. If Sign In failed (e.g. new account), attempt SignUp
+      const origin = typeof window !== 'undefined' ? window.location.origin : ''
+      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+        email: adminEmail.trim(),
+        password: adminPassword,
+        options: {
+          emailRedirectTo: `${origin}/auth/callback?next=/admin`,
+          data: { full_name: 'Beverly Group Admin', role: 'group_admin' }
+        }
+      })
+
+      if (signUpError) {
+        throw new Error(signInError?.message || signUpError.message || 'Invalid admin credentials. Please check your password.')
+      }
+
+      if (signUpData.user && !signUpData.session) {
+        setAdminResetMsg('✓ Account registered! A verification email has been sent to ' + adminEmail + '. Please check your inbox and click the verification link to log in.')
+        return
+      }
+
+      if (signUpData.user && signUpData.session) {
+        await supabase
+          .from('profiles')
+          .upsert({ id: signUpData.user.id, full_name: 'Beverly Group Admin', role: 'group_admin' })
 
         await checkUserAndRole()
       }
     } catch (err: any) {
       const msg = typeof err === 'string' ? err : err?.message
-      setAdminAuthError(!msg || msg === '0' ? 'Invalid admin login credentials. Please check your password.' : msg)
+      setAdminAuthError(!msg || msg === '0' ? 'Invalid admin credentials. Please check your email and password.' : msg)
     } finally {
       setAdminAuthLoading(false)
     }
