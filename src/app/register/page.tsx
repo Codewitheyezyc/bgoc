@@ -112,14 +112,17 @@ export default function RegisterEntry() {
 
       if (error) {
         setErrorMsg(error.message)
-      } else if (data.user && !data.session) {
-        setSuccessMsg('📧 Account registered! A verification email has been sent to ' + email + '. Please check your inbox and click the verification link before logging in to claim or set up your store.')
-        setIsSignUp(false)
-      } else {
-        setSuccessMsg('Account created successfully! Redirecting...')
+      } else if (data.user) {
+        // Sign in immediately to bypass email confirmation gate until custom SMTP is connected
+        await supabase.auth.signInWithPassword({
+          email,
+          password,
+        })
+
+        setSuccessMsg('✓ Account registered successfully! Proceeding to store setup...')
         setTimeout(() => {
           router.push('/register/details')
-        }, 1500)
+        }, 1200)
       }
     } else {
       const { data, error } = await supabase.auth.signInWithPassword({

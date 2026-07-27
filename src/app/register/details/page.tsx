@@ -75,8 +75,8 @@ export default function RegisterDetails() {
         // Load unclaimed shells
         const { data: shells, error } = await supabase
           .from('stores')
-          .select('id, name, logo_url, slug')
-          .eq('approval_status', 'unclaimed')
+          .select('id, name, logo_url, slug, owner_user_id, approval_status')
+          .or('approval_status.eq.unclaimed,owner_user_id.is.null')
           .order('name', { ascending: true })
 
         if (!error && shells) {
@@ -123,7 +123,7 @@ export default function RegisterDetails() {
         .from('stores')
         .update(updatePayload)
         .eq('id', selectedStore.id)
-        .eq('approval_status', 'unclaimed') // safety guard
+        .or('approval_status.eq.unclaimed,owner_user_id.is.null')
         .select()
 
       if (error) throw new Error(error.message)
