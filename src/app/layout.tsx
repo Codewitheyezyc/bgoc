@@ -6,8 +6,13 @@ import { cn } from "@/lib/utils";
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
-  title: "BGOC Portal",
-  description: "Beverly Group of Companies Administration & Shopping Portal",
+  title: "BGOC - Beverly Group of Companies Marketplace",
+  description: "Official Beverly Group multi-store online marketplace for meals, pastries, home goods, toys, and fashion.",
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
 };
 
 export default function RootLayout({
