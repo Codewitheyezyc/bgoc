@@ -118,7 +118,7 @@ export default function CustomerHeader() {
           {/* Center Section: Clean Uncluttered Navigation Links */}
           <nav className="desktop-only" style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
             <Link href="/" className="hover:text-red-600 transition-colors" style={{ fontSize: '14px', fontWeight: 650, color: 'var(--text-primary)', textDecoration: 'none' }}>Home</Link>
-            <Link href="/store" className="hover:text-red-600 transition-colors" style={{ fontSize: '14px', fontWeight: 650, color: 'var(--text-primary)', textDecoration: 'none' }}>Stores Directory</Link>
+            <Link href="/store" className="hover:text-red-600 transition-colors" style={{ fontSize: '14px', fontWeight: 650, color: 'var(--text-primary)', textDecoration: 'none' }}>Stores</Link>
             <Link href="/about" className="hover:text-red-600 transition-colors" style={{ fontSize: '14px', fontWeight: 650, color: 'var(--text-primary)', textDecoration: 'none' }}>About BGOC</Link>
             <Link href="/contact" className="hover:text-red-600 transition-colors" style={{ fontSize: '14px', fontWeight: 650, color: 'var(--text-primary)', textDecoration: 'none' }}>Contact &amp; Support</Link>
             <Link href="/register" className="hover:text-red-600 transition-colors" style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-secondary)', textDecoration: 'none' }}>Register your store</Link>
@@ -376,7 +376,7 @@ export default function CustomerHeader() {
 
               <nav style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <Link href="/" onClick={() => setIsMobileMenuOpen(false)} style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)', textDecoration: 'none', padding: '8px 0', borderBottom: '1px solid var(--border)' }}>Home</Link>
-                <Link href="/store" onClick={() => setIsMobileMenuOpen(false)} style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)', textDecoration: 'none', padding: '8px 0', borderBottom: '1px solid var(--border)' }}>Stores Directory</Link>
+                <Link href="/store" onClick={() => setIsMobileMenuOpen(false)} style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)', textDecoration: 'none', padding: '8px 0', borderBottom: '1px solid var(--border)' }}>Stores</Link>
                 <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)', textDecoration: 'none', padding: '8px 0', borderBottom: '1px solid var(--border)' }}>About BGOC</Link>
                 <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)', textDecoration: 'none', padding: '8px 0', borderBottom: '1px solid var(--border)' }}>Contact &amp; Support</Link>
                 <Link href="/register" onClick={() => setIsMobileMenuOpen(false)} style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-secondary)', textDecoration: 'none', padding: '8px 0', borderBottom: '1px solid var(--border)' }}>Register Your Store</Link>

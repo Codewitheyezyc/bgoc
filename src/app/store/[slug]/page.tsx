@@ -244,7 +244,7 @@ export default function StoreCatalogPage({ params }: PageProps) {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12.5px', color: 'var(--text-muted)', marginBottom: '24px' }}>
               <Link href="/" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 600 }}>Home</Link>
               <ChevronRight size={14} />
-              <Link href="/store" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 600 }}>Stores Directory</Link>
+              <Link href="/store" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 600 }}>Stores</Link>
               <ChevronRight size={14} />
               <span style={{ color: 'var(--primary-red)', fontWeight: 700 }}>{store.name}</span>
             </div>

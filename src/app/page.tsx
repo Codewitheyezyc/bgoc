@@ -187,7 +187,7 @@ export default function StorefrontHome() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '48px', alignItems: 'center' }}>
               
               {/* Hero Left Content */}
-              <div>
+              <div className="mobile-stack-center">
                 <div style={{ 
                   display: 'inline-flex', 
                   alignItems: 'center', 
@@ -207,7 +207,7 @@ export default function StorefrontHome() {
                   ✨ Beverly Group Official Marketplace
                 </div>
 
-                <h1 style={{ 
+                <h1 className="mobile-center" style={{ 
                   fontSize: '44px', 
                   fontWeight: 800, 
                   letterSpacing: '-1.2px', 
@@ -225,7 +225,7 @@ export default function StorefrontHome() {
                   </span>
                 </h1>
                 
-                <p style={{ 
+                <p className="mobile-center" style={{ 
                   fontSize: '16.5px', 
                   color: 'var(--text-secondary)', 
                   lineHeight: 1.6, 
@@ -236,10 +236,10 @@ export default function StorefrontHome() {
                 </p>
 
                 {/* Hero Primary Actions */}
-                <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '32px' }}>
+                <div className="mobile-flex-center" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '32px' }}>
                   <Link 
                     href="/store"
-                    className="btn btn-primary" 
+                    className="btn btn-primary mobile-btn-full" 
                     style={{ 
                       padding: '14px 32px', 
                       fontSize: '15px',
@@ -259,7 +259,7 @@ export default function StorefrontHome() {
 
                   <Link 
                     href="/register"
-                    className="btn btn-secondary" 
+                    className="btn btn-secondary mobile-btn-full" 
                     style={{ 
                       padding: '14px 24px', 
                       fontSize: '14px',
@@ -279,7 +279,7 @@ export default function StorefrontHome() {
                 </div>
 
                 {/* Quick Category Chips */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center', fontSize: '12.5px' }}>
+                <div className="mobile-flex-center" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center', fontSize: '12.5px' }}>
                   <span style={{ fontWeight: 700, color: 'var(--text-muted)' }}>Popular Categories:</span>
                   <button type="button" onClick={() => router.push('/store?q=pizza')} style={{ background: '#FEF3C7', border: '1px solid var(--accent-gold)', borderRadius: 'var(--radius-full)', padding: '4px 14px', color: '#B45309', cursor: 'pointer', fontWeight: 650 }}>🍕 Pizza &amp; Fast Meals</button>
                   <button type="button" onClick={() => router.push('/store?q=bakery')} style={{ background: '#FFFBEB', border: '1px solid var(--accent-gold)', borderRadius: 'var(--radius-full)', padding: '4px 14px', color: '#B45309', cursor: 'pointer', fontWeight: 650 }}>🥐 Bakeries &amp; Cakes</button>
@@ -550,7 +550,7 @@ export default function StorefrontHome() {
               
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                 <Link href="/store" style={{ fontSize: '13.5px', fontWeight: 700, color: 'var(--primary-red)', textDecoration: 'none' }}>
-                  View All Stores Directory →
+                  View All Stores →
                 </Link>
 
                 <div style={{ display: 'flex', gap: '8px' }}>

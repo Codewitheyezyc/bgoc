@@ -818,3 +818,48 @@ h1, h2, h3, h4, h5, h6 {
     display: none !important;
   }
 }
+
+/* Mobile Layout & Alignment Perfection (<= 640px) */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .card {
+    padding: 20px 16px !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .main-content {
+    padding: 24px 0 !important;
+  }
+
+  /* Center headings and badges on mobile */
+  .mobile-center {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .mobile-flex-center {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+  }
+
+  .mobile-stack-center {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .mobile-btn-full {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}

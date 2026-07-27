@@ -445,8 +445,8 @@ function StoreDirectoryContent() {
           ) : (
             <div style={{ 
               display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
-              gap: '28px'
+              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
+              gap: '20px'
             }}>
               {filteredFoundingStores.map(founding => {
                 const approvedMatch = matchFoundingStore(founding.slug, dbStores, 'approved')
@@ -623,7 +623,7 @@ export default function StoreDirectoryPage() {
   return (
     <Suspense fallback={
       <div className="text-center font-mono" style={{ padding: '80px 0', color: 'var(--text-muted)' }}>
-        Loading Store Directory...
+        Loading Stores...
       </div>
     }>
       <StoreDirectoryContent />
