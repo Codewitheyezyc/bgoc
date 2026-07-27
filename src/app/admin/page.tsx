@@ -179,7 +179,7 @@ export default function AdminDashboard() {
       }
 
       if (signUpData.user && !signUpData.session) {
-        setAdminResetMsg('✓ Account registered! A verification email has been sent to ' + adminEmail + '. Please check your inbox and click the verification link to log in.')
+        setAdminResetMsg('✓ Admin account created! To complete login without waiting for email delivery, run the 1-line SQL confirmation in your Supabase SQL Editor, then enter your password below to log in.')
         return
       }
 
